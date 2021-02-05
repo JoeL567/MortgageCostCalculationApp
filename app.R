@@ -93,7 +93,7 @@ server <- function(input, output) {
         
         # draw the histogram with the specified number of bins
         plot <- ggplot(data=data) + 
-            geom_smooth(aes(x/1000,y1, colour=paste0(input$deposit_1,"% deposit"))) + 
+            geom_line(aes(x/1000,y1, colour=paste0(input$deposit_1,"% deposit"))) + 
             geom_hline(yintercept = 0) + 
             ggtitle("Available funds after purchase vs purchase cost") + 
             xlab("Purchase Cost (£)") + 
@@ -103,7 +103,7 @@ server <- function(input, output) {
             scale_colour_manual(name="legend", values=c("blue", "red"))
         
         if(input$compare_check){
-            plot <- plot + geom_smooth(aes(x/1000,y2, colour=paste0(input$deposit_2,"% deposit")))
+            plot <- plot + geom_line(aes(x/1000,y2, colour=paste0(input$deposit_2,"% deposit")))
         }
         return(plot)
     })
